@@ -1,4 +1,4 @@
-package tk.reinaldorauch.collectorapp.database;
+package tk.reinaldorauch.collectorapp.database.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
@@ -8,7 +8,12 @@ import android.arch.persistence.room.Update;
 
 import java.util.List;
 
+import tk.reinaldorauch.collectorapp.database.entity.Collection;
+
 /**
+ *
+ * Dao to acesss Collection data from the database
+ *
  * Created by Reinaldo on 10/02/2018.
  */
 

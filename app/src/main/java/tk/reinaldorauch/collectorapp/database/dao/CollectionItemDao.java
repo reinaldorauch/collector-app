@@ -1,11 +1,16 @@
-package tk.reinaldorauch.collectorapp.database;
+package tk.reinaldorauch.collectorapp.database.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
 
 import java.util.List;
 
+import tk.reinaldorauch.collectorapp.database.entity.CollectionItem;
+
 /**
+ *
+ * Dao to help acessing CollectionItem data from the database
+ *
  * Created by Reinaldo on 10/02/2018.
  */
 

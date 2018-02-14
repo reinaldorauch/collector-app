@@ -9,8 +9,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import tk.reinaldorauch.collectorapp.database.dao.CollectionDao;
+import tk.reinaldorauch.collectorapp.database.dao.CollectionItemDao;
+
 import static org.junit.Assert.*;
 /**
+ *
+ * Testing the database access class
+ *
  * Created by Reinaldo on 10/02/2018.
  */
 
@@ -26,21 +32,20 @@ public class CollectorAppDatabaseTest {
     @Test
     public void testCreateDatabaseInstance() throws Exception {
         assertNotNull(db);
-        assertTrue(db instanceof CollectorAppDatabase);
     }
 
     @Test
     public void testGetCollectionDao() throws Exception {
         assertNotNull(db);
         CollectionDao c = db.collectionDao();
-        assertTrue(c instanceof CollectionDao);
+        assertNotNull(c);
     }
 
     @Test
     public void testGetCollectionItemDao() throws Exception {
         assertNotNull(db);
         CollectionItemDao c = db.collectionItemDao();
-        assertTrue(c instanceof CollectionItemDao);
+        assertNotNull(c);
     }
 
     @After
