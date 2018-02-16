@@ -4,6 +4,8 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
+import tk.reinaldorauch.collectorapp.fragment.ListItem;
+
 /**
  *
  * Entity based on Collection model interface to help persisting it to the database
@@ -12,7 +14,7 @@ import android.arch.persistence.room.PrimaryKey;
  */
 
 @Entity(indices = {@Index(value = { "id" }, unique = true)})
-public class Collection implements tk.reinaldorauch.collectorapp.model.Collection {
+public class Collection implements tk.reinaldorauch.collectorapp.model.Collection, ListItem {
     @PrimaryKey
     private int id;
 
@@ -32,5 +34,10 @@ public class Collection implements tk.reinaldorauch.collectorapp.model.Collectio
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }

@@ -10,10 +10,10 @@ import android.content.Context;
  * Created by Reinaldo on 10/02/2018.
  */
 
-final class DatabaseBuilder {
+public final class DatabaseBuilder {
     private static CollectorAppDatabase db = null;
 
-    synchronized static CollectorAppDatabase create(Context context) {
+    public synchronized static CollectorAppDatabase create(Context context) {
         if (db == null) {
             db = Room.databaseBuilder(context, CollectorAppDatabase.class, "collections").build();
         }
