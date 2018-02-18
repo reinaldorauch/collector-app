@@ -20,6 +20,11 @@ public class Collection implements tk.reinaldorauch.collectorapp.model.Collectio
 
     private String name;
 
+    public Collection(int id, String name) {
+        this.setId(id);
+        this.setName(name);
+    }
+
     public int getId() {
         return this.id;
     }

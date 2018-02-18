@@ -1,8 +1,12 @@
 package tk.reinaldorauch.collectorapp.database;
 
+import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteQuery;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v4.app.INotificationSideChannel;
 
 import org.junit.After;
 import org.junit.Before;
@@ -27,11 +31,6 @@ public class CollectorAppDatabaseTest {
     @Before
     public void createDatabase() {
         db = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(), CollectorAppDatabase.class).build();
-    }
-
-    @Test
-    public void testCreateDatabaseInstance() throws Exception {
-        assertNotNull(db);
     }
 
     @Test
