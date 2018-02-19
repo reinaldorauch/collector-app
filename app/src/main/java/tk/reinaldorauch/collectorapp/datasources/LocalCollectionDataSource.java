@@ -39,4 +39,8 @@ public class LocalCollectionDataSource implements CollectionDataSource {
     public LiveData<List<Collection>> getList() {
         return dao.getAll();
     }
+
+    public void add(Collection c) {
+        dao.insertAll(c);
+    }
 }

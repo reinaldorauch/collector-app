@@ -44,4 +44,14 @@ public class CollectionRepository {
         }
 
     }
+
+    public void add(String collectionName) {
+        final Collection c = new Collection(collectionName);
+        executors.diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                collectionDataSource.add(c);
+            }
+        });
+    }
 }

@@ -1,6 +1,7 @@
 package tk.reinaldorauch.collectorapp.database.entity;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
@@ -15,11 +16,16 @@ import tk.reinaldorauch.collectorapp.fragment.ListItem;
 
 @Entity(indices = {@Index(value = { "id" }, unique = true)})
 public class Collection implements tk.reinaldorauch.collectorapp.model.Collection, ListItem {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     private String name;
 
+    public Collection(String name) {
+        this.setName(name);
+    }
+
+    @Ignore
     public Collection(int id, String name) {
         this.setId(id);
         this.setName(name);

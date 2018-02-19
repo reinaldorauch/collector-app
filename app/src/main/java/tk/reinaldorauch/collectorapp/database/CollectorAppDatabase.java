@@ -21,7 +21,7 @@ import tk.reinaldorauch.collectorapp.database.entity.CollectionItem;
  * Created by Reinaldo on 10/02/2018.
  */
 
-@Database(entities = {Collection.class, CollectionItem.class}, version = 2)
+@Database(entities = {Collection.class, CollectionItem.class}, version = 3)
 public abstract class CollectorAppDatabase extends RoomDatabase {
     private static CollectorAppDatabase INSTANCE = null;
     private static final Object sLock = new Object();

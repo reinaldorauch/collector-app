@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">CollectorApp</string>
-    <string name="title_activity_second">SecondActivity</string>
     <string name="add_item">Adicionar</string>
 </resources>

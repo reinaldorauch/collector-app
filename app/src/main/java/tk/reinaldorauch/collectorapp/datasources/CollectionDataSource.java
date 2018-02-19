@@ -13,4 +13,5 @@ import tk.reinaldorauch.collectorapp.database.entity.Collection;
 
 public interface CollectionDataSource {
     LiveData<List<Collection>> getList();
+    void add(Collection c);
 }

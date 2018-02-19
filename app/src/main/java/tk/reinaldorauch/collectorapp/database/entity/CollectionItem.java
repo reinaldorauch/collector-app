@@ -19,7 +19,7 @@ import tk.reinaldorauch.collectorapp.fragment.ListItem;
                                   parentColumns = "id",
                                   childColumns = "collection_id"))
 public class CollectionItem implements tk.reinaldorauch.collectorapp.model.CollectionItem, ListItem {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     private String description;
