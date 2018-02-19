@@ -1,5 +1,6 @@
 package tk.reinaldorauch.collectorapp.database.dao;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -20,7 +21,7 @@ import tk.reinaldorauch.collectorapp.database.entity.Collection;
 @Dao
 public interface CollectionDao {
     @Query("SELECT * FROM collection")
-    List<Collection> getAll();
+    LiveData<List<Collection>> getAll();
 
     @Query("SELECT * FROM collection WHERE id = :id")
     Collection getCollection(int id);

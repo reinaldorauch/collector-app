@@ -18,7 +18,6 @@ import tk.reinaldorauch.collectorapp.database.CollectorAppDatabase;
 import tk.reinaldorauch.collectorapp.database.entity.Collection;
 
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotSame;
 
 /**
  * Tests CollectionDao
@@ -60,7 +59,13 @@ public class CollectionDaoTest {
 
         dao.insertAll(one, two);
 
-        List<Collection> collectionList = dao.getAll();
+        List<Collection> collectionList = dao.getAll().getValue();
+
+        if (collectionList == null) {
+            throw new RuntimeException("CollectionList is null");
+        } else if (collectionList.size() != 2) {
+            throw new RuntimeException("CollectionList do not have 2 entries as expected");
+        }
 
         Collection newOne = collectionList.get(0);
         Collection newTwo = collectionList.get(1);
@@ -103,11 +108,14 @@ public class CollectionDaoTest {
     @Test(expected = AssertionFailedError.class)
     public void testDeleteCollections() throws Exception {
         dao.insertAll(CollectionGenerator.generateCollection(), CollectionGenerator.generateCollection());
-        List<Collection> all = dao.getAll();
+        List<Collection> all = dao.getAll().getValue();
+        if (all == null) {
+            throw new RuntimeException("List of collections is null");
+        }
         assertEquals(2, all.size());
         Collection toBeRemoved = all.get(0);
         dao.delete(toBeRemoved);
-        all = dao.getAll();
+        all = dao.getAll().getValue();
         assertEquals(1, all.size());
         assertEqualCollections(toBeRemoved, all.get(0));
     }

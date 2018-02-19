@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import tk.reinaldorauch.collectorapp.R;
 import tk.reinaldorauch.collectorapp.fragment.ItemFragment.OnListFragmentInteractionListener;
+import tk.reinaldorauch.collectorapp.database.entity.Collection;
 
 import java.util.List;
 
@@ -15,12 +16,12 @@ import java.util.List;
  * {@link RecyclerView.Adapter} that can display a {@link ListItem} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  */
-public class ListItemRecyclerViewAdapter extends RecyclerView.Adapter<ListItemRecyclerViewAdapter.ViewHolder> {
+public class CollectionListItemRecyclerViewAdapter extends RecyclerView.Adapter<CollectionListItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<? extends ListItem> mValues;
+    private List<Collection> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    ListItemRecyclerViewAdapter(List<? extends ListItem> items, OnListFragmentInteractionListener listener) {
+    CollectionListItemRecyclerViewAdapter(List<Collection> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -34,24 +35,17 @@ public class ListItemRecyclerViewAdapter extends RecyclerView.Adapter<ListItemRe
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).toString());
-        holder.mContentView.setText(mValues.get(position).toString());
-
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
-            }
-        });
+        if(mValues == null) {
+            return;
+        }
+        holder.bind(mValues.get(position));
     }
 
     @Override
     public int getItemCount() {
+        if (mValues == null) {
+            return 0;
+        }
         return mValues.size();
     }
 
@@ -59,18 +53,24 @@ public class ListItemRecyclerViewAdapter extends RecyclerView.Adapter<ListItemRe
         final View mView;
         final TextView mIdView;
         final TextView mContentView;
-        ListItem mItem;
 
         ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = view.findViewById(R.id.id);
             mContentView = view.findViewById(R.id.content);
+            mIdView = view.findViewById(R.id.id);
+        }
+
+        void bind(Collection item) {
+            mIdView.setText(String.valueOf(item.getId()));
+            mContentView.setText(item.toString());
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() +
+                    "#" + mIdView.getText() +
+                    " '" + mContentView.getText() + "'";
         }
     }
 }
